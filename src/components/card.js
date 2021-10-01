@@ -59,11 +59,6 @@ const cardAppender = (selector) => {
 
   const target = document.querySelector(selector);
 
-  // axios.get('http://localhost:5000/api/articles').then(function (resp) {
-
-  // console.log(resp)
-  // })
-
   axios.get('http://localhost:5000/api/articles').then(function ({data:{articles:{bootstrap, javascript, jquery, node, technology}}}) {
   const oof = [ bootstrap, javascript, jquery, node, technology];
 
@@ -71,15 +66,9 @@ const cardAppender = (selector) => {
     element.forEach(function(arg) {
       const card = Card(arg);
       target.appendChild(card);
+      });
     });
-  });
-  // console.log(oof)
-  })
-
-  // axios.get('http://localhost:5000/api/articles').then(function (resp) {
-  // const yum = resp.data.articles.bootstrap;
-  // console.log(yum);
-  // })
+  }).catch(function (error) {console.log(error)});
 }
 
 export { Card, cardAppender }
