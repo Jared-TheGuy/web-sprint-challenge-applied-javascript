@@ -40,6 +40,11 @@ const Card = (article) => {
   fAuthor.appendChild(fImgContainer);
   fImgContainer.appendChild(fImg);
   fAuthor.appendChild(fAuthorName);
+
+  fCard.addEventListener('click', function() {
+    console.log(article.headline);
+  });
+  return fCard;
 }
 
 const cardAppender = (selector) => {
@@ -54,9 +59,27 @@ const cardAppender = (selector) => {
 
   const target = document.querySelector(selector);
 
-  axios.get('http://localhost:5000/api/articles').then(function (resp) {
-    console.log(resp)
+  // axios.get('http://localhost:5000/api/articles').then(function (resp) {
+
+  // console.log(resp)
+  // })
+
+  axios.get('http://localhost:5000/api/articles').then(function ({data:{articles:{bootstrap, javascript, jquery, node, technology}}}) {
+  const oof = [ bootstrap, javascript, jquery, node, technology];
+
+  oof.forEach(function(element) {
+    element.forEach(function(arg) {
+      const card = Card(arg);
+      target.appendChild(card);
+    });
+  });
+  // console.log(oof)
   })
+
+  // axios.get('http://localhost:5000/api/articles').then(function (resp) {
+  // const yum = resp.data.articles.bootstrap;
+  // console.log(yum);
+  // })
 }
 
 export { Card, cardAppender }
