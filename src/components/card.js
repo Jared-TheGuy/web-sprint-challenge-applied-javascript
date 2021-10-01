@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -17,6 +19,27 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  const fCard = document.createElement('div');
+  const fHeadline = document.createElement('div');
+  const fAuthor = document.createElement('div');
+  const fImgContainer = document.createElement('div');
+  const fImg = document.createElement('img');
+  const fAuthorName = document.createElement('span');
+
+  fCard.classList.add('card');
+  fHeadline.classList.add('headline');
+  fAuthor.classList.add('author');
+  fImgContainer.classList.add('img-container');
+  
+  fHeadline.textContent = article.headline;
+  fImg.src = article.authorPhoto;
+  fAuthorName.textContent =`By ${article.authorName}`;
+
+  fCard.appendChild(fHeadline);
+  fCard.appendChild(fAuthor);
+  fAuthor.appendChild(fImgContainer);
+  fImgContainer.appendChild(fImg);
+  fAuthor.appendChild(fAuthorName);
 }
 
 const cardAppender = (selector) => {
@@ -28,6 +51,12 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+
+  const target = document.querySelector(selector);
+
+  axios.get('http://localhost:5000/api/articles').then(function (resp) {
+    console.log(resp)
+  })
 }
 
 export { Card, cardAppender }

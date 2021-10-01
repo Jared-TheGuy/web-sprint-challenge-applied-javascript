@@ -21,13 +21,13 @@ const Header = (title, date, temp) => {
   fHeader.appendChild(fTitle);
   fHeader.appendChild(fTemp);
 
-  fHeader.classList.add('.header');
-  fDate.classList.add('.date');
-  fTemp.classList.add('.temp');
+  fHeader.classList.add('header');
+  fDate.classList.add('date');
+  fTemp.classList.add('temp');
 
-  fDate.textContent(date);
-  fTitle.textContent(title);
-  fTemp.textContent(temp);
+  fDate.textContent = date;
+  fTitle.textContent = title;
+  fTemp.textContent = temp;
 
   return fHeader;
 }
@@ -39,8 +39,10 @@ const headerAppender = (selector) => {
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
+  const target = document.querySelector(selector);
   const value = Header('title', 'date', 'temp');
-  selector.appendChild(value);
+  
+  target.appendChild(value);
 
 }
 
